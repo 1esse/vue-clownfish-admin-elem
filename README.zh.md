@@ -26,7 +26,7 @@
   </a>
 </p>
 
-#### 这里是antd版本，如果你更倾向于使用element-plus，请[点击这里](https://github.com/1esse/vue-clownfish-admin-elem)。
+#### 这里是element-plus版本，如果你更倾向于使用antd，请[点击这里](https://github.com/1esse/vue-clownfish-admin)。
 
 ## 🐬 简介
 [vue-clownfish-admin](https://github.com/1esse/vue-clownfish-admin) 是一个由Vue最新技术栈开发的后台管理前端简易框架。基于vue3，集成vue3最新生态系统的核心库实现。主要的技术栈有
