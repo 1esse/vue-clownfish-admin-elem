@@ -1,0 +1,102 @@
+<script setup lang="tsx">
+import { ref, h, watch, inject, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { resolve } from 'pathe' // path包es代码实现
+import Scrollbar from '../components/Scrollbar.vue'
+import { RouterLink } from 'vue-router'
+import type { Component, Slots } from 'vue'
+import type { RouteMeta, RouteRecordRaw } from 'vue-router'
+import 'element-plus/es'
+import { ElMenu, ElMenuItem, ElSubMenu, ElIcon } from 'element-plus/es'
+import { Location } from '@element-plus/icons-vue'
+
+const router = useRouter()
+const route = useRoute()
+const defaultActive = ref<string>(route.path) // 菜单默认选中项
+const defaultOpeneds = ref<string[]>(
+  router.getRoutes()
+    .filter(matchedRoute => matchedRoute.children.length > 0)
+    .map(matchedRoute => matchedRoute.path)
+) // 子菜单默认展开项
+const keepAlivePages = inject<Layout.keepAlivePages>('keepAlivePages')
+const routesList = computed(() => {
+  return router.options.routes
+})
+
+watch(route, (currentRoute) => {
+  defaultActive.value = currentRoute.path
+  // 如果该路由设置页面缓存则推进缓存组
+  if (currentRoute.meta.keepAlive && !keepAlivePages?.has(currentRoute.name as string)) {
+    keepAlivePages?.add(currentRoute.name as string)
+  }
+})
+
+const getNavIcon = (item: RouteMeta | undefined) => {
+  if (!item || (item && !item.icon)) return null
+  return h(item?.icon as Component)
+}
+
+const MenuItemLink = (props: { route: RouteRecordRaw, url: string }, { slots }: { slots: Slots }) => {
+  if (props.route.meta?.external) {
+    return <a href={props.route.redirect as string} target='_blank' ref='noopener noreferrer'>{slots.default?.()}</a>
+  }
+  return <RouterLink to={props.url}>{slots.default?.()}</RouterLink>
+}
+
+const MenuItemNav = (props: { route: RouteRecordRaw, basePath: string }) => {
+  // 子菜单模板
+  const subMenuTemplate = (route: RouteRecordRaw) => {
+    const slots = {
+      title: () => (
+        <template>
+          <el-icon><Location /></el-icon>
+          <span>route.meta?.title</span>
+        </template>
+      )
+    }
+    const basePath = resolve(props.basePath, route.path)
+    return (
+      <ElSubMenu index={basePath} v-slots={slots}>
+        {route.children?.map(item => <MenuItemNav route={item} basePath={basePath}></MenuItemNav>)}
+      </ElSubMenu>
+    )
+  }
+  // 菜单项模板
+  const menuItemTemplate = (route: RouteRecordRaw) => {
+    const url = resolve(props.basePath, route.path)
+    return (
+      <ElMenuItem index={url}>
+        <ElIcon><Location /></ElIcon>
+        <MenuItemLink route={route} url={url}>
+          <span>{route.meta?.title}</span>
+        </MenuItemLink>
+      </ElMenuItem>
+    )
+  }
+  return props.route.meta?.hidden ? <div style="display: none"></div> :
+    props.route.children ?
+      props.route.children.filter((route: RouteRecordRaw) => !route.meta?.hidden).length > 1 ?
+        subMenuTemplate(props.route) :
+        menuItemTemplate(getOnlyChildPath(props.route)) :
+      menuItemTemplate(props.route)
+}
+
+const TheSideBar = () => (
+  <Scrollbar>
+    <ElMenu mode="vertical" router={true} defaultActive={defaultActive.value} defaultOpeneds={defaultOpeneds.value}>
+      {routesList.value.map((route, index) => <MenuItemNav key={index} route={route} basePath={route.path}></MenuItemNav>)}
+    </ElMenu>
+  </Scrollbar>
+)
+
+function getOnlyChildPath(parentRoute: RouteRecordRaw): RouteRecordRaw {
+  const childRoute = parentRoute.children?.find((route: RouteRecordRaw) => !route.meta?.hidden)
+  if (childRoute)
+    childRoute.path = `${parentRoute.path}/${childRoute.path}`
+  return (childRoute || {}) as RouteRecordRaw
+}
+</script>
+
+<template>
+  <TheSideBar />
+</template>

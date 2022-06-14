@@ -1,0 +1,24 @@
+.el-menu{
+    background-color: inherit;
+    border-right: none;
+}
+
+.el-breadcrumb__item{
+    & .el-breadcrumb__inner {
+        & a{
+
+            color: #00000073;
+            font-weight: normal;
+            text-decoration: none;
+            -webkit-transition: var(--el-transition-color);
+            transition: var(--el-transition-color);
+        }
+    }
+    &:last-child{
+        & .el-breadcrumb__inner{
+            font-weight: 400;
+            color: #000000d9;
+            cursor: text;
+        }
+    }
+}  

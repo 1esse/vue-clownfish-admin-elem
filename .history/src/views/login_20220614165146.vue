@@ -1,0 +1,85 @@
+<script setup lang="ts">
+import { reactive } from 'vue'
+import { appTitle } from '@/appConfig'
+import { userStore } from '@/stores/user'
+import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
+
+interface LoginForm {
+  username: string
+  password: string
+  remember: boolean
+}
+const form = reactive<LoginForm>({
+  username: 'david',
+  password: '123456',
+  remember: true
+})
+const loading = reactive({
+  login: false
+})
+const router = useRouter()
+const user = userStore()
+
+function login() {
+  loading.login = true
+  user.login(form.username, form.password).then(_ => {
+    router.replace('/dashboard')
+  }).catch(err => {
+    loading.login = false
+    ElMessage.error(err)
+  })
+}
+</script>
+
+<template>
+  <main class="main">
+    <section class="login-wrapper">
+      <h2 class="title">{{ appTitle }} Login</h2>
+      <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign" style="max-width: 460px">
+        <el-form-item label="Name">
+          <el-input v-model="formLabelAlign.name" />
+        </el-form-item>
+        <el-form-item label="Activity zone">
+          <el-input v-model="formLabelAlign.region" />
+        </el-form-item>
+        <el-form-item label="Activity form">
+          <el-input v-model="formLabelAlign.type" />
+        </el-form-item>
+      </el-form>
+    </section>
+  </main>
+</template>
+<style scoped lang="postcss">
+.main {
+  background-image: linear-gradient(-170deg, #44cee9, #2b74c1);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  & .login-wrapper {
+    margin-top: -10rem;
+
+    & .title {
+      color: var(--white);
+      text-align: center;
+    }
+
+    & .login-form {
+      background-color: var(--white);
+      padding: 2rem 1.5rem;
+      width: 25rem;
+      border-radius: .5rem;
+
+      & .wrapper-remember {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+</style>

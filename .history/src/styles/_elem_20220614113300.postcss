@@ -1,0 +1,38 @@
+.el-header{
+    height: unset;
+}
+
+.el-main{
+    padding: 1rem;
+}
+
+.el-menu{
+    background-color: inherit;
+    border-right: none;
+    & .el-menu-item{
+        &.is-active{
+            & .el-icon{
+                background-color: var(--blue);
+                color: var(--white);
+            }
+        }
+    }
+}
+
+.el-breadcrumb__item{
+    &:last-child{
+        & .el-breadcrumb__inner{
+            font-weight: 400;
+            color: #000000d9;
+            cursor: text;
+        }
+    }
+}  
+
+.el-breadcrumb__inner a {
+    color: #00000073;
+    font-weight: normal;
+    text-decoration: none;
+    -webkit-transition: var(--el-transition-color);
+    transition: var(--el-transition-color);
+}
