@@ -28,7 +28,7 @@
 
 English | [简体中文](https://github.com/1esse/vue-clownfish-admin/blob/master/README.zh.md)
 
-#### This is antd version of vue-clownfish-admin, if you prefer element-plus as UI toolkit, checokut [here](https://github.com/1esse/vue-clownfish-admin-elem).
+#### This is element-plus version of vue-clownfish-admin, if you prefer antd as UI toolkit, checokut [here](https://github.com/1esse/vue-clownfish-admin).
 
 ## 🐬 Intro
 [vue-clownfish-admin](https://github.com/1esse/vue-clownfish-admin) is a frontend SIMPLE Admin Interfaces. It is based on vue3 and uses [antd](https://github.com/vueComponent/ant-design-vue) as UI toolkit. The main tech stacks are
