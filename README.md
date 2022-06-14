@@ -26,7 +26,7 @@
   </a>
 </p>
 
-English | [简体中文](https://github.com/1esse/vue-clownfish-admin/blob/master/README.zh.md)
+English | [简体中文](https://github.com/1esse/vue-clownfish-admin-elem/blob/master/README.zh.md)
 
 #### This is element-plus version of vue-clownfish-admin, if you prefer antd as UI toolkit, checokut [here](https://github.com/1esse/vue-clownfish-admin).
 
