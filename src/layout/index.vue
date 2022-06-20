@@ -6,6 +6,7 @@ import SideBar from './SideBar.vue'
 import TabsBar from './TabsBar.vue'
 import isMobile from '@/composables/isMobile'
 import Shadow from '@/components/Shadow.vue'
+import Logo from '@/assets/logo.png'
 
 const _isMobile = isMobile()
 const sidebarRelated = reactive<Layout.SidebarRelated>({
@@ -39,8 +40,15 @@ provide('loading', loading)
 </script>
 <template>
   <ElContainer style="height: 100%">
-    <ElAside v-if="!_isMobile" :width="asideWidth">
-      <SideBar></SideBar>
+    <ElAside v-if="!_isMobile" :width="asideWidth" class="shadow-lg">
+      <div style="display: flex; flex-direction: column; width: 100%; height: 100%;">
+        <RouterLink to="/">
+          <el-image
+            :style="{ width: '100%', height: sidebarRelated.collapsed ? '3.6rem' : '6.6rem', padding: '0.3rem 0' }"
+            :src="Logo" fit="contain" />
+        </RouterLink>
+        <SideBar></SideBar>
+      </div>
     </ElAside>
     <ElContainer>
       <ElHeader>
@@ -62,7 +70,12 @@ provide('loading', loading)
     <Transition name="fade" mode="in-out" appear>
       <Shadow v-if="_isMobile && !sidebarRelated.collapsed" @shadowClick="sidebarRelated.collapsed = true">
         <Transition name="slide-left" mode="out-in" appear>
-          <div class="block sidebar">
+          <div class="block sidebar-mobile">
+            <RouterLink to="/">
+              <el-image
+                :style="{ width: '100%', height: sidebarRelated.collapsed ? '3.6rem' : '6.6rem', padding: '0.3rem 0' }"
+                :src="Logo" fit="contain" />
+            </RouterLink>
             <SideBar></SideBar>
           </div>
         </Transition>
@@ -72,16 +85,18 @@ provide('loading', loading)
 </template>
 
 <style lang="postcss" scoped>
-.sidebar {
+.sidebar-mobile {
   width: v-bind('sidebarRelated.width');
   height: 96vh;
   position: absolute;
   top: 2vh;
   left: 2vw;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-:deep(.sidebar>.scrollbar) {
+:deep(.sidebar-mobile>.scrollbar) {
   padding-right: 1rem;
 }
 </style>
