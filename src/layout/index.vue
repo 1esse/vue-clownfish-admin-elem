@@ -73,10 +73,10 @@ provide('loading', loading)
           <div class="block sidebar-mobile">
             <RouterLink to="/">
               <el-image
-                :style="{ width: '100%', height: sidebarRelated.collapsed ? '3.6rem' : '6.6rem', padding: '0.3rem 0' }"
+                :style="{ width: sidebarRelated.width, height: sidebarRelated.collapsed ? '3.6rem' : '6.6rem', padding: '0.3rem 0' }"
                 :src="Logo" fit="contain" />
             </RouterLink>
-            <SideBar></SideBar>
+            <SideBar style="padding-right: 1rem;"></SideBar>
           </div>
         </Transition>
       </Shadow>
@@ -94,9 +94,5 @@ provide('loading', loading)
   padding: 0;
   display: flex;
   flex-direction: column;
-}
-
-:deep(.sidebar-mobile>.scrollbar) {
-  padding-right: 1rem;
 }
 </style>
