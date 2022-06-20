@@ -3,7 +3,7 @@
 import 'element-plus/es/components/menu/style/css'
 import 'element-plus/es/components/menu-item/style/css'
 import 'element-plus/es/components/sub-menu/style/css'
-import { ref, h, watch, inject, computed, Transition } from 'vue'
+import { ref, h, watch, inject, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { resolve } from 'pathe' // path包es代码实现
 import Scrollbar from '../components/Scrollbar.vue'
@@ -121,5 +121,6 @@ function getOnlyChildPath(parentRoute: RouteRecordRaw): RouteRecordRaw {
 .menu-vertical:not(.el-menu--collapse) {
   width: v-bind('sidebarRelated?.width') !important;
   padding-left: calc(var(--el-menu-expand-base-level-padding) + var(--el-menu-level) * var(--el-menu-level-padding));
+  padding-right: 1rem;
 }
 </style>

@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { computed } from '@vue/reactivity'
-import { provide, reactive, ref } from 'vue'
+import { onMounted, provide, reactive, ref } from 'vue'
 import HeadBar from './HeadBar.vue'
 import SideBar from './SideBar.vue'
 import TabsBar from './TabsBar.vue'
+import isMobile from '@/composables/isMobile'
+import Shadow from '@/components/Shadow.vue'
 
+const _isMobile = isMobile()
 const sidebarRelated = reactive<Layout.SidebarRelated>({
-  collapsed: false,
+  collapsed: true,
   width: '15rem',
   collapsedWidth: '3rem'
 })
@@ -21,6 +24,14 @@ const asideWidth = computed(() => {
   return sidebarRelated?.collapsed ? sidebarRelated?.collapsedWidth : sidebarRelated?.width
 })
 
+onMounted(() => {
+  setSidebarCollapsed()
+})
+
+function setSidebarCollapsed() {
+  sidebarRelated.collapsed = _isMobile.value
+}
+
 // 为子组件提供布局的相关状态信息
 provide('sidebarRelated', sidebarRelated)
 provide('keepAlivePages', keepAlivePages.value)
@@ -28,7 +39,7 @@ provide('loading', loading)
 </script>
 <template>
   <ElContainer style="height: 100%">
-    <ElAside :width="asideWidth">
+    <ElAside v-if="!_isMobile" :width="asideWidth">
       <SideBar></SideBar>
     </ElAside>
     <ElContainer>
@@ -47,4 +58,30 @@ provide('loading', loading)
       </ElMain>
     </ElContainer>
   </ElContainer>
+  <Teleport to="body">
+    <Transition name="fade" mode="in-out" appear>
+      <Shadow v-if="_isMobile && !sidebarRelated.collapsed" @shadowClick="sidebarRelated.collapsed = true">
+        <Transition name="slide-left" mode="out-in" appear>
+          <div class="block sidebar">
+            <SideBar></SideBar>
+          </div>
+        </Transition>
+      </Shadow>
+    </Transition>
+  </Teleport>
 </template>
+
+<style lang="postcss" scoped>
+.sidebar {
+  width: v-bind('sidebarRelated.width');
+  height: 94vh;
+  position: absolute;
+  top: 3vh;
+  left: 3vw;
+  padding: 0;
+}
+
+:deep(.sidebar>.scrollbar) {
+  padding-right: 1rem;
+}
+</style>
