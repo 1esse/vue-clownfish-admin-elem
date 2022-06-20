@@ -16,7 +16,7 @@
     <img src="https://img.shields.io/badge/vueRouter-4.0.15-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/element-plus/element-plus">
-    <img src="https://img.shields.io/badge/element-plus-2.2.5-brightgreen.svg" alt="element-ui">
+    <img src="https://img.shields.io/badge/elementplus-2.2.5-brightgreen.svg" alt="element-ui">
   </a>
   <a href="https://github.com/1esse/vue-clownfish-admin/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
