@@ -1,20 +1,23 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import 'overlayscrollbars/css/OverlayScrollbars.css'
-import OverlayScrollbars, { Options } from 'overlayscrollbars'
+import OverlayScrollbars from 'overlayscrollbars'
+import type { Options } from 'overlayscrollbars'
 
 const props = withDefaults(defineProps<{
   width?: string | number
   height?: string | number
   tag?: string
   direction?: 'horizontal' | 'vertical'
-  initOptions?: Options
+  initOptions?: Options,
+  flex?: number
 }>(), {
   width: '100%',
   height: '100%',
   tag: 'div',
   direction: 'vertical',
-  initOptions: undefined
+  initOptions: undefined,
+  flex: 1
 })
 
 const scrollbar = ref<OverlayScrollbars>()
