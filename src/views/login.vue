@@ -99,6 +99,7 @@ function login() {
     & .title {
       color: var(--white);
       text-align: center;
+      margin-bottom: 1rem;
     }
 
     & .login-form {
