@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from '@vue/reactivity'
-import { onMounted, provide, reactive, ref } from 'vue'
+import { onBeforeMount, onMounted, provide, reactive, ref } from 'vue'
 import HeadBar from './HeadBar.vue'
 import SideBar from './SideBar.vue'
 import TabsBar from './TabsBar.vue'
@@ -25,7 +25,7 @@ const asideWidth = computed(() => {
   return sidebarRelated?.collapsed ? sidebarRelated?.collapsedWidth : sidebarRelated?.width
 })
 
-onMounted(() => {
+onBeforeMount(() => {
   setSidebarCollapsed()
 })
 
@@ -43,8 +43,7 @@ provide('loading', loading)
     <ElAside v-if="!_isMobile" :width="asideWidth" class="shadow-lg">
       <div style="display: flex; flex-direction: column; width: 100%; height: 100%;">
         <RouterLink to="/">
-          <el-image
-            :style="{ width: '100%', height: sidebarRelated.collapsed ? '3.6rem' : '6.6rem', padding: '0.3rem 0' }"
+          <el-image :style="{ width: '100%', height: sidebarRelated.collapsed ? '3rem' : '6rem', padding: '0.3rem 0' }"
             :src="Logo" fit="contain" />
         </RouterLink>
         <SideBar></SideBar>

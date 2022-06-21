@@ -18,9 +18,10 @@ const route = useRoute()
 const defaultActive = ref<string>(route.path) // 菜单默认选中项
 const defaultOpeneds = ref<string[]>(
   router.getRoutes()
-    .filter(matchedRoute => matchedRoute.children.length > 0)
+    .filter(matchedRoute => matchedRoute.children.length > 0 && /^\/\w+?$/.test(matchedRoute.path))
     .map(matchedRoute => matchedRoute.path)
 ) // 子菜单默认展开项
+
 const sidebarRelated = inject<Layout.SidebarRelated>('sidebarRelated')
 const keepAlivePages = inject<Layout.keepAlivePages>('keepAlivePages')
 const routesList = computed(() => {
