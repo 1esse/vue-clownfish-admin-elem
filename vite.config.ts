@@ -52,5 +52,9 @@ export default defineConfig({
     alias: {
       '@': '/src'
     }
+  },
+  server: {
+    open: true,
+    port: 8888
   }
 })
