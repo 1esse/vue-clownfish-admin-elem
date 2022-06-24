@@ -66,18 +66,16 @@ provide('loading', loading)
     </ElContainer>
   </ElContainer>
   <Teleport to="body">
-    <Transition name="fade" mode="in-out" appear>
+    <Transition name="slide-left" mode="out-in" appear>
       <Shadow v-if="_isMobile && !sidebarRelated.collapsed" @shadowClick="sidebarRelated.collapsed = true">
-        <Transition name="slide-left" mode="out-in" appear>
-          <div class="block sidebar-mobile">
-            <RouterLink to="/">
-              <el-image
-                :style="{ width: sidebarRelated.width, height: sidebarRelated.collapsed ? '3.6rem' : '6.6rem', padding: '0.3rem 0' }"
-                :src="Logo" fit="contain" />
-            </RouterLink>
-            <SideBar style="padding-right: 1rem;"></SideBar>
-          </div>
-        </Transition>
+        <div class="block sidebar-mobile">
+          <RouterLink to="/">
+            <el-image
+              :style="{ width: sidebarRelated.width, height: sidebarRelated.collapsed ? '3.6rem' : '6.6rem', padding: '0.3rem 0' }"
+              :src="Logo" fit="contain" />
+          </RouterLink>
+          <SideBar style="padding-right: 1rem;"></SideBar>
+        </div>
       </Shadow>
     </Transition>
   </Teleport>
