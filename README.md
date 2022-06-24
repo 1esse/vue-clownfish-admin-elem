@@ -28,7 +28,7 @@
 
 #### 这里是element-plus版本，如果你更倾向于使用antd，请[点击这里](https://github.com/1esse/vue-clownfish-admin)。
 
-## ✨ 最新版本 v1.0.5
+## ✨ 最新版本 v1.0.6
 1. 优化动画效果，解决某些情况下页面切换动画卡顿的问题，如果您的版本在1.0.6之前，建议重新拉取代码或者修改样式
   ```
   # styles/_transition.postcss
