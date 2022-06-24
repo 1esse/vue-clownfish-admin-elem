@@ -34,7 +34,7 @@
   # styles/_transition.postcss
   .fade-scale-enter-from,
   .fade-scale-leave-to {
-    opacity: 0; 
+    opacity: 0; # opacity: 0.05 -> opacity: 0，使用0.05可能造成transition动画卡顿
     transform: scale(0.95);
     transform-origin: center;
   }
