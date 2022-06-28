@@ -15,7 +15,7 @@ function resolvePath(src: string) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/vue-clownfish-admin-elem/',
+  base: '/',
   plugins: [
     vue(),
     vueJsx(),

@@ -11,7 +11,7 @@ declare module 'vue-router' {
      */
     title?: string
     /**
-     * icon：菜单图标，值为src/svgs文件夹下相同的名称或者antd图标组件，当值为组件时需要显式导入，并且需要markRow
+     * icon：菜单图标，值为src/svgs文件夹下相同的名称或者elemenut-plus图标组件，当值为组件时需要显式导入，并且需要markRow
      */
     icon?: Component | string
     /**

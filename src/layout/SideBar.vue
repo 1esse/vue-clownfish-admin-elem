@@ -94,22 +94,21 @@ const MenuItemNav = (props: { route: RouteRecordRaw, basePath: string }) => {
       menuItemTemplate(props.route)
 }
 
-const TheSideBar = () => (
-  <Scrollbar>
-    <ElMenu class="menu-vertical" mode="vertical" collapse={sidebarRelated?.collapsed} defaultActive={defaultActive.value} defaultOpeneds={defaultOpeneds.value} collapseTransition={false}>
-      {routesList.value.map((route, index) => <MenuItemNav key={index} route={route} basePath={route.path}></MenuItemNav>)}
-    </ElMenu>
-  </Scrollbar>
-)
-
 function getOnlyChildPath(parentRoute: RouteRecordRaw): RouteRecordRaw {
   const childRoute = parentRoute.children?.find((route: RouteRecordRaw) => !route.meta?.hidden)
-  return Object.assign({}, childRoute, {path: `${parentRoute.path}/${childRoute?.path}`} as RouteRecordRaw )
+  return Object.assign({}, childRoute, { path: `${parentRoute.path}/${childRoute?.path}` } as RouteRecordRaw)
 }
 </script>
 
 <template>
-  <TheSideBar />
+  <Scrollbar>
+    <ElMenu class="menu-vertical" mode="vertical" :collapse="sidebarRelated?.collapsed" :defaultActive="defaultActive"
+      :defaultOpeneds="defaultOpeneds" :collapseTransition="false">
+      <template v-for="route in routesList" key="index">
+        <MenuItemNav :route="route" :basePath="route.path"></MenuItemNav>
+      </template>
+    </ElMenu>
+  </Scrollbar>
 </template>
 
 <style lang="postcss">
