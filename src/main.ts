@@ -9,6 +9,6 @@ import 'virtual:svg-icons-register'
 import './permission'
 import 'element-plus/theme-chalk/el-message.css' // message样式
 
-mockEnv.includes(import.meta.env.MODE as envType) && mock === 'on' && enableMock()
+mockEnv.includes(import.meta.env.MODE as AppGlobal.EnvType) && mock === 'on' && enableMock()
 
 createApp(App).use(createPinia()).use(router).mount('#app')
