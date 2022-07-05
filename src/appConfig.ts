@@ -1,7 +1,7 @@
 /**
  * app标题
  */
-export const appTitle = '红坚果CPC'
+export const appTitle = 'ClownFish Admin'
 
 /**
  * 使用mock代理api请求：on开，off关  
