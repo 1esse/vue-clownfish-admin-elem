@@ -1,7 +1,9 @@
+import type { EnvType, SwitchType } from "./app"
+
 /**
  * app标题
  */
-export const appTitle = '红坚果CPC'
+export const appTitle = 'ClownFish Admin'
 
 /**
  * 使用mock代理api请求：on开，off关  
@@ -17,7 +19,7 @@ export const mockNamespace: boolean = true
  * mock代理指定环境
  * 只在开发环境且appConfig的mock字段为‘on’的情况启动mock
  */
-export const mockEnv: envType[] = ['development', 'staging', 'production']
+export const mockEnv: EnvType[] = ['development', 'staging', 'production']
 
 /**
  * 过渡动画类型
