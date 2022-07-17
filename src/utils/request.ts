@@ -1,5 +1,5 @@
-import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import axios from 'axios'
 import { getCookie } from '.'
 
 const request = axios.create({
@@ -34,16 +34,16 @@ request.interceptors.response.use(
       })
       return Promise.reject(new Error(msg || '未知错误'))
     } else {
-      return response
+      return response.data
     }
   },
   error => {
+    console.error(error)
     ElMessage({
       message: error.message,
       type: 'error',
       duration: 5 * 1000
     })
-    ElMessage.error(error.message)
     return Promise.reject(error)
   }
 )

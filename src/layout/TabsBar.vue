@@ -6,6 +6,7 @@ import Scrollbar from '@/components/Scrollbar.vue'
 import MenuPanel from '@/components/MenuPanel.vue'
 import type { ComponentPublicInstance } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import type { Layout } from 'types/layout'
 
 const router = useRouter()
 const route = useRoute()
@@ -114,7 +115,7 @@ function showTabMenu(e: MouseEvent, tab: RouteLocationNormalizedLoaded) {
 </script>
 
 <template>
-  <Scrollbar ref="scrollbarDom" height="2rem" direction="horizontal">
+  <Scrollbar ref="scrollbarDom" height="2rem" direction="horizontal" :speed="3">
     <div class="tabs">
       <RouterLink ref="tabDoms" v-for="tab in tabs" :key="tab.path" :to="tab.path" class="tab shadow-sm"
         :class="{ active: tab.path === route.path }" @click.right.prevent="showTabMenu($event, tab)">

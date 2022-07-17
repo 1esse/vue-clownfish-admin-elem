@@ -12,6 +12,7 @@ import type { Component, Slots } from 'vue'
 import type { RouteMeta, RouteRecordRaw } from 'vue-router'
 import { ElMenu, ElMenuItem, ElSubMenu, ElIcon } from 'element-plus/es'
 import SvgIcon from '../components/SvgIcon.vue'
+import type { Layout } from 'types/layout'
 
 const router = useRouter()
 const route = useRoute()
@@ -101,7 +102,7 @@ function getOnlyChildPath(parentRoute: RouteRecordRaw): RouteRecordRaw {
 </script>
 
 <template>
-  <Scrollbar>
+  <Scrollbar :speed="3">
     <ElMenu class="menu-vertical" mode="vertical" :collapse="sidebarRelated?.collapsed" :defaultActive="defaultActive"
       :defaultOpeneds="defaultOpeneds" :collapseTransition="false">
       <template v-for="route in routesList" key="index">
