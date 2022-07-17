@@ -1,4 +1,4 @@
-import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue"
+import { onBeforeMount, onBeforeUnmount, ref } from "vue"
 
 export default function () {
   const WIDTH = 992

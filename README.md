@@ -7,16 +7,16 @@
     <img src="https://img.shields.io/badge/vue-3.2.37-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/vitejs/vite">
-    <img src="https://img.shields.io/badge/vite-2.9.13-brightgreen.svg" alt="vue">
+    <img src="https://img.shields.io/badge/vite-3.0.0-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/vuejs/pinia">
-    <img src="https://img.shields.io/badge/pinia-2.0.14-brightgreen.svg" alt="vue">
+    <img src="https://img.shields.io/badge/pinia-2.0.16-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/vuejs/router">
-    <img src="https://img.shields.io/badge/vueRouter-4.0.15-brightgreen.svg" alt="vue">
+    <img src="https://img.shields.io/badge/vueRouter-4.1.2-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/element-plus/element-plus">
-    <img src="https://img.shields.io/badge/elementplus-2.2.5-brightgreen.svg" alt="element-ui">
+    <img src="https://img.shields.io/badge/elementplus-2.2.9-brightgreen.svg" alt="element-ui">
   </a>
   <a href="https://github.com/1esse/vue-clownfish-admin/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
@@ -36,10 +36,21 @@
 [ES2015+](http://es6.ruanyifeng.com/)，[typescript](https://www.typescriptlang.org/zh/)，[vue3](https://staging-cn.vuejs.org)，[pinia](https://pinia.vuejs.org/)，[vue-router](https://router.vuejs.org/zh/)，[vite](https://cn.vitejs.dev/)，[element-plus](https://github.com/element-plus/element-plus)，了解这些技术会让你更容易入手此项目。此项目基于`vite`构建，并使用`vue3`作为开发技术，所以[只针对现代浏览器做开发](https://cn.vitejs.dev/guide/build.html#browser-compatibility)，不支持低版本的浏览器（如ie），如有需要请自行添加`polyfill`进行适配。
 + [在线预览](https://1esse.github.io/vue-clownfish-admin-elem)
 
+## ✨ 最新版本 v1.0.16
+1. cookie增加SameSite=None;Secure设置
+2. 优化侧边栏和标签栏滚动速度
+3. 将vite版本更新至3.0，更新所有其他依赖包至最新版本
+4. 运行项目成功后默认不自动打开浏览器窗口
+
 ## 🦑 优势
 + 几乎使用当前前端最新技术开发（vite, vue3, ts, pinia, csswg）
 + 布局组件解耦，可轻易切换，替代组件
 + 框架实现代码行数少，通俗易懂容易上手
+
+## 🐟了解这些可能会有帮助
+1. 定义在src/components下的组件，可在页面的template直接使用，不必导入（tsx除外）。
+2. 本项目采用[vite官方推荐的css编写方式](https://www.vitejs.net/guide/features.html#css-pre-processors)，可能是volar插件的原因，并没有对vue文件的postcss代码进行高亮，但如果关闭了编辑器的css语法检查，也可以使用原生css编写嵌套style，但可能会失去一些代码提示。如果你不喜欢用postcss-nesting，也可以下载其他css预处理器依赖如scss，less等，不会造成冲突。
+3. 不需要对flex，grid等css样式进行多浏览器适配，框架已配置了自动适配。
 
 ## 🐳 主要功能
 + 根据路由配置自动生成侧边栏菜单（支持多层嵌套和外链）

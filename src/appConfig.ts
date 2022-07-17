@@ -1,9 +1,9 @@
-import type { EnvType, SwitchType } from "./app"
+import { EnvType, SwitchType } from "types/app"
 
 /**
  * app标题
  */
-export const appTitle = 'ClownFish Admin'
+export const appTitle = 'Clownfish Admin'
 
 /**
  * 使用mock代理api请求：on开，off关  

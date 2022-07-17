@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { userStore } from '../stores/user'
 import BreadCrumb from './BreadCrumb.vue'
 import { Fold, ArrowRightBold } from '@element-plus/icons-vue'
+import type { Layout } from 'types/layout'
 
 const sidebarRelated = inject<Layout.SidebarRelated>('sidebarRelated')
 const loading = inject<Layout.Loading>('loading')

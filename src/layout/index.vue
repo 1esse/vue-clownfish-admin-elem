@@ -6,6 +6,7 @@ import SideBar from './SideBar.vue'
 import TabsBar from './TabsBar.vue'
 import isMobile from '@/composables/isMobile'
 import Logo from '@/assets/logo.png'
+import type { Layout } from 'types/layout'
 
 const _isMobile = isMobile()
 const sidebarRelated = reactive<Layout.SidebarRelated>({
@@ -53,12 +54,17 @@ provide('loading', loading)
         <HeadBar></HeadBar>
         <TabsBar :withIcons="true"></TabsBar>
       </ElHeader>
-      <ElMain>
+      <ElMain id="content-window">
         <RouterView v-slot="{ Component, route }">
           <Transition name="fade-scale" mode="out-in">
-            <KeepAlive :include="getKeepAlivePages">
-              <component :is="Component" :key="route.path" />
-            </KeepAlive>
+            <!-- 
+              vite的hmr和keepalive组件冲突会导致vite热更新后路由失效，
+              https://github.com/vuejs/core/pull/5165
+              开发过程注释掉keepalive
+            -->
+            <!-- <KeepAlive :include="getKeepAlivePages"> -->
+            <component :is="Component" :key="route.path" />
+            <!-- </KeepAlive> -->
           </Transition>
         </RouterView>
       </ElMain>

@@ -1,39 +1,10 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import Layout from '@/layout/index.vue'
-import { CoffeeCup, Link } from '@element-plus/icons-vue'
-import { Component, markRaw } from "vue"
+import { Link, HomeFilled, Connection } from '@element-plus/icons-vue'
+import { markRaw } from "vue"
 import type { RouteRecordRaw } from 'vue-router'
 
-declare module 'vue-router' {
-  interface RouteMeta {
-    /**
-     * title：菜单名
-     */
-    title?: string
-    /**
-     * icon：菜单图标，值为src/svgs文件夹下相同的名称或者elemenut-plus图标组件，当值为组件时需要显式导入，并且需要markRow
-     */
-    icon?: Component | string
-    /**
-     * external：是否外部链接，外部链接时需在redirect指定链接地址
-     */
-    external?: boolean
-    /**
-     * breadcrumb：是否显示面包屑，默认true
-     */
-    breadcrumb?: boolean
-    /**
-     * hidden：是否在菜单隐藏
-     */
-    hidden?: boolean
-    /**
-     * keepAlive：是否缓存该路由，只有当页面定义的name和路由定义的name一致时，才能生效
-     */
-    keepAlive?: boolean
-  }
-}
-
-const dashboardRoute: RouteRecordRaw = {
+export const dashboardRoute: RouteRecordRaw = {
   path: '/',
   component: Layout,
   redirect: '/dashboard',
@@ -43,7 +14,7 @@ const dashboardRoute: RouteRecordRaw = {
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard.vue'),
-      meta: { title: '首页', icon: 'dashboard' }
+      meta: { title: '首页', icon: HomeFilled }
     }
   ]
 }
@@ -90,14 +61,14 @@ const routes: RouteRecordRaw[] = [
         path: 'index',
         name: 'ModalIndex',
         component: () => import('@/views/modal.vue'),
-        meta: { title: '模态框', icon: 'dashboard' }
+        meta: { title: '模态框', icon: Connection }
       }
     ]
   },
   {
-    path: '/https://github.com/1esse/vue-clownfish-admin',
+    path: '/https://github.com/1esse/vue-clownfish-admin-elem',
     component: undefined,
-    redirect: 'https://github.com/1esse/vue-clownfish-admin',
+    redirect: 'https://github.com/1esse/vue-clownfish-admin-elem',
     meta: { title: 'github', external: true, icon: Link }
   }
 ]
