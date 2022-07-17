@@ -28,19 +28,18 @@
 
 #### 这里是element-plus版本，如果你更倾向于使用antd，请[点击这里](https://github.com/1esse/vue-clownfish-admin)。
 
-## ✨ 最新版本 v1.0.10
-1. 优化代码
-
-## 🐬 简介
-[vue-clownfish-admin-elem](https://github.com/1esse/vue-clownfish-admin-elem) 是一个由Vue最新技术栈开发的后台管理前端简易框架。基于vue3，集成vue3最新生态系统的核心库实现。主要的技术栈有
-[ES2015+](http://es6.ruanyifeng.com/)，[typescript](https://www.typescriptlang.org/zh/)，[vue3](https://staging-cn.vuejs.org)，[pinia](https://pinia.vuejs.org/)，[vue-router](https://router.vuejs.org/zh/)，[vite](https://cn.vitejs.dev/)，[element-plus](https://github.com/element-plus/element-plus)，了解这些技术会让你更容易入手此项目。此项目基于`vite`构建，并使用`vue3`作为开发技术，所以[只针对现代浏览器做开发](https://cn.vitejs.dev/guide/build.html#browser-compatibility)，不支持低版本的浏览器（如ie），如有需要请自行添加`polyfill`进行适配。
-+ [在线预览](https://1esse.github.io/vue-clownfish-admin-elem)
 
 ## ✨ 最新版本 v1.0.16
 1. cookie增加SameSite=None;Secure设置
 2. 优化侧边栏和标签栏滚动速度
 3. 将vite版本更新至3.0，更新所有其他依赖包至最新版本
 4. 运行项目成功后默认不自动打开浏览器窗口
+
+## 🐬 简介
+[vue-clownfish-admin-elem](https://github.com/1esse/vue-clownfish-admin-elem) 是一个由Vue最新技术栈开发的后台管理前端简易框架。基于vue3，集成vue3最新生态系统的核心库实现。主要的技术栈有
+[ES2015+](http://es6.ruanyifeng.com/)，[typescript](https://www.typescriptlang.org/zh/)，[vue3](https://staging-cn.vuejs.org)，[pinia](https://pinia.vuejs.org/)，[vue-router](https://router.vuejs.org/zh/)，[vite](https://cn.vitejs.dev/)，[element-plus](https://github.com/element-plus/element-plus)，了解这些技术会让你更容易入手此项目。此项目基于`vite`构建，并使用`vue3`作为开发技术，所以[只针对现代浏览器做开发](https://cn.vitejs.dev/guide/build.html#browser-compatibility)，不支持低版本的浏览器（如ie），如有需要请自行添加`polyfill`进行适配。
++ [在线预览](https://1esse.github.io/vue-clownfish-admin-elem)
+
 
 ## 🦑 优势
 + 几乎使用当前前端最新技术开发（vite, vue3, ts, pinia, csswg）
