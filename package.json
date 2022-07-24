@@ -5,7 +5,7 @@
     "email": "572116385@qq.com",
     "url": "https://1esse.github.io/vue-clownfish-admin/"
   },
-  "version": "1.0.16",
+  "version": "1.0.17",
   "private": "true",
   "scripts": {
     "dev": "vite",
@@ -31,6 +31,7 @@
     "@types/node": "^18.0.5",
     "@types/nprogress": "^0.2.0",
     "@types/overlayscrollbars": "^1.12.1",
+    "@types/qs": "^6.9.7",
     "@vitejs/plugin-vue": "^3.0.0",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
     "autoprefixer": "^10.4.7",
