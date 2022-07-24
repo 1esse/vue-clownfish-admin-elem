@@ -40,8 +40,8 @@ provide('loading', loading)
 </script>
 <template>
   <ElContainer style="height: 100%">
-    <ElAside v-if="!_isMobile" :width="asideWidth" class="shadow-lg">
-      <div style="display: flex; flex-direction: column; width: 100%; height: 100%;">
+    <ElAside v-if="!_isMobile" :width="asideWidth">
+      <div class="shadow-lg" style="display: flex; flex-direction: column; width: 100%; height: 100%;">
         <RouterLink to="/">
           <el-image :style="{ width: '100%', height: sidebarRelated.collapsed ? '3rem' : '6rem', padding: '0.3rem 0' }"
             :src="Logo" fit="contain" />

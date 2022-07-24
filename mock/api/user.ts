@@ -59,7 +59,7 @@ export default <MockApi.obj[]>[
         data: null
       }
       // 获取token
-      const token = options.url.slice(options.url.indexOf('=') + 1)
+      const { token } = options.params
       if (!token) return failRes
       const user = users.find(user => user.token === token)
       if (!user) return failRes
