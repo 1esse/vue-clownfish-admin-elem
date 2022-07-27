@@ -23,7 +23,7 @@ const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/redirect',
     component: Layout,
-    meta: { hidden: true, title: '页面跳转' },
+    meta: { hidden: true, title: '页面跳转', hiddenTab: true },
     children: [
       {
         path: '/redirect/:path(.*)',
@@ -61,7 +61,7 @@ const routes: RouteRecordRaw[] = [
         path: 'index',
         name: 'ModalIndex',
         component: () => import('@/views/modal.vue'),
-        meta: { title: '模态框', icon: Connection }
+        meta: { title: '模态框', icon: Connection, askBeforeCloseTab: true }
       }
     ]
   },

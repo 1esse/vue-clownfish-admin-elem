@@ -7,7 +7,7 @@ import MenuPanel from '@/components/MenuPanel.vue'
 import type { ComponentPublicInstance } from 'vue'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import type { Layout } from 'types/layout'
-import { showHiddenTabs } from '@/appConfig'
+import { ElMessageBox } from 'element-plus'
 
 const router = useRouter()
 const route = useRoute()
@@ -22,18 +22,19 @@ const props = withDefaults(defineProps<{
   withIcons: false
 })
 
-onBeforeMount(() => { addTab(route) })
+onBeforeMount(() => { addTab() })
 
-watch(route, (currentRoute) => { addTab(currentRoute) })
+watch(() => route.path, addTab)
 
-function addTab(tab: RouteLocationNormalizedLoaded) {
-  if (tab.meta?.hidden && !showHiddenTabs) return
+function addTab() {
+  const tab: RouteLocationNormalizedLoaded = route
+  if (tab.meta?.hiddenTab) return
   if (tabs.value.every(route => route.path !== tab.path)) {
     /**
      * 参数传进来的meta是递归合并后的结果，此处需要找出属于该路由的meta
      * 详情见：https://router.vuejs.org/zh/guide/advanced/meta.html
      */
-    tabs.value.push({ ...tab, meta: tab.matched.find(item => item.path === tab.path)?.meta || {} })
+    tabs.value.push({ ...tab, meta: tab.matched.find(item => item.path === tab.path)?.meta || tab.meta })
   }
   nextTick(() => {
     scrollbarDom.value && tabDoms.value && moveToTab(tab)
@@ -71,7 +72,11 @@ function refreshPage(page: RouteLocationNormalizedLoaded) {
   router.replace({ path: `/redirect${page.path}`, query: page.query })
 }
 
-function closeTab(tab: RouteLocationNormalizedLoaded) {
+async function closeTab(tab: RouteLocationNormalizedLoaded) {
+  if (tab.meta.askBeforeCloseTab) {
+    const isClose = await askBeforeCloseTab(tab)
+    if (!isClose) return
+  }
   deleteKeepAlivePage(tab)
   const closePath = tab.path
   tabs.value.splice(tabs.value.findIndex(item => item.path === closePath), 1)
@@ -84,6 +89,20 @@ function closeTab(tab: RouteLocationNormalizedLoaded) {
   } else {
     router.replace('/redirect/dashboard')
   }
+}
+
+function askBeforeCloseTab(tab: RouteLocationNormalizedLoaded) {
+  return new Promise((resolve) => {
+    ElMessageBox.confirm(`确定关闭页面「${tab.meta.title}」吗？`, '关闭提示', {
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(() => {
+      resolve(true)
+    }).catch(() => {
+      resolve(false)
+    })
+  })
 }
 
 function closeAllTabs() {
